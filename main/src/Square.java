@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+public abstract class Square {
 
-public class Square {
-    public ArrayList<Square> neighbors;
-    public Piece piece;
+
+    public void printSquare(boolean isRedPerspective) {
+        System.out.println("Error!!!!!!!!!!!!!!"); }
 }

@@ -1,12 +1,67 @@
 public class Board {
-    public int BOARD_WIDTH = 10;
-    public Square[][] board;
+    private static int BOARD_WIDTH = 10;
+    private Square[][] board;
+    private static Board instance;
 
-    public Board() {
+    private Board() {
         board  = new Square[BOARD_WIDTH][BOARD_WIDTH];
+        for (int i = 0; i < BOARD_WIDTH; i++) {
+            for (int j = 0; j < BOARD_WIDTH; j++) {
+                if ((i==4 || i==5) && (j==2 || j==3 || j==6 || j==7)) {
+                    board[i][j] = new LakeSquare();
+                }
+                else {
+                    board[i][j] = new LandSquare();
+                }
+            }
+        }
     }
+
+    public static Board getBoard() {
+        if (instance == null) {
+            instance = new Board();
+        }
+        return instance;
+    }
+
+    //set up!!!!
 
     public void addPiece(Square square, Piece piece) {
         //add piece to square
     }
-}
+
+    public void printBoard(boolean isRedPerspective) {
+        if (isRedPerspective) {
+            System.out.println("  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+            System.out.println("-------------------------------------------");
+            for (int i = 0; i < BOARD_WIDTH; i++) {
+                System.out.print(i + " |");
+                for (int j = 0; j < BOARD_WIDTH; j++) {
+                    Square square = board[i][j];
+                    square.printSquare(isRedPerspective);
+                }
+                System.out.print("\n");
+            }
+        }
+        else {
+            System.out.println("  | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |");
+            System.out.println("-------------------------------------------");
+            for (int i = BOARD_WIDTH - 1; i >= 0; i--) {
+                System.out.print(i + " |");
+                for (int j = BOARD_WIDTH - 1; j >= 0; j--) {
+                    Square square = board[i][j];
+                    square.printSquare(isRedPerspective);
+                }
+                System.out.print("\n");
+            }
+
+        }
+        System.out.print("\n\n\n");
+        }
+    }
+
+    //public void printBoardHidden() {}
+
+
+
+

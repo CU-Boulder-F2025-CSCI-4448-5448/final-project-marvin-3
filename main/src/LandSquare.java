@@ -1,0 +1,12 @@
+public class LandSquare extends Square {
+    private Piece piece = null;
+
+    public boolean hasPiece() {return piece != null;}
+
+    public void printSquare(boolean isRedPerspective) {
+        if (hasPiece()) {
+            piece.printPiece(isRedPerspective);
+        }
+        else {System.out.print(" -  ");}
+    }
+}
