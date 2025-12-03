@@ -10,6 +10,10 @@ public class GameFacade {
     public GameFacade() {
     }
 
+    public static void clearScreen() {
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    }
+
     public void play() {
         setUpBoard();
         //while loop for turns until one player wins
@@ -35,14 +39,14 @@ public class GameFacade {
             placePiece(piece);
             Board.getBoard().printBoard(true);
         }
-        //clear terminal
+        clearScreen();
         System.out.println("Blue, it's your turn to set up the board!");
         Board.getBoard().printBoard(false);
         for (Piece piece : bluePieces) {
             placePiece(piece);
             Board.getBoard().printBoard(true);
         }
-        //clear terminal
+        clearScreen();
     }
 
     public void placePiece(Piece piece) {

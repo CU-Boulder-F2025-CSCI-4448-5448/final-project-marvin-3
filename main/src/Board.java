@@ -37,7 +37,7 @@ public class Board {
     }
 
     public void printBoard(boolean isRedPerspective) {
-        if (isRedPerspective) {
+        if (!isRedPerspective) {
             System.out.println("  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             System.out.println("-------------------------------------------");
             for (int i = 0; i < BOARD_WIDTH; i++) {
