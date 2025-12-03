@@ -1,22 +1,40 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameFacade {
     Scanner scanner = new Scanner(System.in);
+    ArrayList<Piece> redPieces = new ArrayList<Piece>();
+    ArrayList<Piece> bluePieces = new ArrayList<Piece>();
+    ArrayList<Piece> takenRedPieces = new ArrayList<Piece>();
+    ArrayList<Piece> takenBluePieces = new ArrayList<Piece>();
+    boolean winner;
 
     public GameFacade() {
-
+        //redPieces = PieceFactory.createRedPieces();
+        //bluePieces = PieceFactory.createBluePieces();
     }
 
     public void play() {
-        //players set pieces
+        placePieces();
         //while loop for turns until one player wins
         boolean isRedTurn = true;
         boolean gameOver = false;
         while (!gameOver) {
-          turn(isRedTurn);
-          isRedTurn = !isRedTurn;
+            if (cannotMove(isRedTurn)) {
+                gameOver = true;
+                this.winner = !isRedTurn;
+                break;
+            }
+            turn(isRedTurn);
+            isRedTurn = !isRedTurn;
         }
     }
+
+    public void placePieces() {
+        //place pieces
+    }
+
+
 
     public void turn(boolean isRedTurn) {
         //do while valid piece - put in own function?
@@ -38,8 +56,13 @@ public class GameFacade {
         //if move, move
         //print hidden board showing moved
 
+
         System.out.println("Give computer to other player and enter any key");
         scanner.nextLine();
+    }
+
+    boolean cannotMove(boolean isRedTurn) {
+        return false;
     }
 
 
