@@ -84,7 +84,7 @@ public class Board {
     }
 
     public boolean isLakeSquare(int x, int y) {
-        return board[x][y] instanceof LakeSquare;
+        return board[y][x] instanceof LakeSquare;
     }
 
     public void strike(int xCoordStriking, int yCoordStriking, int xCoordStruck, int yCoordStruck) {

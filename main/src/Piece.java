@@ -23,4 +23,6 @@ public abstract class Piece {
 
     abstract public boolean canMove();
 
+    public String toString() {return this.value.toString();}
+
 }

@@ -44,7 +44,7 @@ public class GameFacade {
         Board.getBoard().printBoard(false);
         for (Piece piece : bluePieces) {
             placePiece(piece);
-            Board.getBoard().printBoard(true);
+            Board.getBoard().printBoard(false);
         }
         clearScreen();
     }
@@ -69,9 +69,16 @@ public class GameFacade {
     }
 
     public boolean validate(int x, int y, boolean isRed) {
-        if (Board.getBoard().isLakeSquare(x, y)) {return false;}
-        if (Board.getBoard().squareHasPiece(x, y)) {return false;}
+        if (Board.getBoard().isLakeSquare(x, y)) {
+            System.out.println("Lake!");
+            return false;
+        }
+        if (Board.getBoard().squareHasPiece(x, y)) {
+            System.out.println("Occupied!");
+            return false;
+        }
         else if (x >= 0 && x <= 9 && isRed && (y >= 0 && y <= 3)) {
+            System.out.println("Red wrong!");
             return true;
         }
         else if (x >= 0 && x <= 9 && !isRed && (y >= 6 && y <= 9)) {
