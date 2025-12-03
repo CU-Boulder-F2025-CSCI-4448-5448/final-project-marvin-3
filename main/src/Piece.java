@@ -8,6 +8,8 @@ public abstract class Piece {
         this.value = value;
     }
 
+    public boolean isRed() {return this.isRed;}
+
     public void printPiece(boolean isRedPerspective) {
         if (isRedPerspective == isRed) {
             System.out.print(" " + value + "  ");

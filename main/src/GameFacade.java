@@ -37,7 +37,7 @@ public class GameFacade {
         }
         //clear terminal
         System.out.println("Blue, it's your turn to set up the board!");
-        Board.getBoard().printBoard(true);
+        Board.getBoard().printBoard(false);
         for (Piece piece : bluePieces) {
             placePiece(piece);
             Board.getBoard().printBoard(true);
@@ -55,7 +55,7 @@ public class GameFacade {
             x = scanner.nextInt();
             System.out.print("Y coordinate: ");
             y = scanner.nextInt();
-            //validCoordinates = validate(x, y, piece.isRed());
+            validCoordinates = validate(x, y, piece.isRed());
             if (!validCoordinates) {
                 System.out.println("Invalid coordinates!");
             }
@@ -65,7 +65,9 @@ public class GameFacade {
     }
 
     public boolean validate(int x, int y, boolean isRed) {
-        if (x >= 0 && x <= 9 && isRed && (y >= 0 && y <= 3)) {
+        if (Board.getBoard().isLakeSquare(x, y)) {return false;}
+        if (Board.getBoard().squareHasPiece(x, y)) {return false;}
+        else if (x >= 0 && x <= 9 && isRed && (y >= 0 && y <= 3)) {
             return true;
         }
         else if (x >= 0 && x <= 9 && !isRed && (y >= 6 && y <= 9)) {

@@ -68,6 +68,19 @@ public class Board {
         }
     }
 
+    public boolean squareHasPiece(int x, int y) {
+        Square square = board[x][y];
+        if (square instanceof LandSquare) {
+            LandSquare landSquare = (LandSquare) square;
+            return landSquare.hasPiece();
+        }
+        else {return false;}
+    }
+
+    public boolean isLakeSquare(int x, int y) {
+        return board[x][y] instanceof LakeSquare;
+    }
+
     public void strike(int xCoordStriking, int yCoordStriking, int xCoordStruck, int yCoordStruck) {
 
     }
