@@ -27,7 +27,7 @@ public class Board {
 
 
     public void addPiece(Piece piece, int x, int y) {
-        Square square = board[x][y];
+        Square square = board[y][x];
         if (square instanceof LakeSquare) {
             throw new RuntimeException("Cannot add piece to lake square!");
         };
@@ -75,7 +75,7 @@ public class Board {
     }
 
     public boolean squareHasPiece(int x, int y) {
-        Square square = board[x][y];
+        Square square = board[y][x];
         if (square instanceof LandSquare) {
             LandSquare landSquare = (LandSquare) square;
             return landSquare.hasPiece();
