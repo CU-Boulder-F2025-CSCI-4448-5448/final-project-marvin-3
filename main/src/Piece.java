@@ -16,4 +16,9 @@ public abstract class Piece {
             System.out.print(" ?  ");
         }
     }
+
+    public Character getValue() {return value;}
+
+    abstract public boolean canMove();
+
 }

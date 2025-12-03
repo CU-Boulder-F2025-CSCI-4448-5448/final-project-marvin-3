@@ -58,7 +58,16 @@ public class Board {
         }
         System.out.print("\n\n\n");
         }
+
+    public boolean select(int xCoord, int yCoord) {
+        Square currentSquare = board[xCoord][yCoord];
+        if (currentSquare.equals(new LakeSquare())) {return false;}
+        else {
+            LandSquare landSquare = (LandSquare) currentSquare;
+            return landSquare.selectSquare();
+        }
     }
+}
 
     //public void printBoardHidden() {}
 
