@@ -1,5 +1,12 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class PieceFactory {
 
-    //this is just a placeholder
-    public static Piece createPiece(boolean isRed, Character value) {return new MoveablePiece(isRed, value);}}
+    public static void createPieces(char type, boolean isRed, int numPieces) {
+
+    }
+}
+
+
 
