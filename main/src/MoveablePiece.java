@@ -17,7 +17,7 @@ public class MoveablePiece extends Piece {
             int thisNumeric = this.getValue() - '0';
             int otherNumeric;
             if (otherValue == 'S') {otherNumeric = 10;}
-            else {otherNumeric= otherValue - '0';}
+            else {otherNumeric = otherValue - '0';}
             if (thisNumeric < otherNumeric) {return "WIN";}
             else if (thisNumeric > otherNumeric) {return "LOSE";}
             else {return "TIE";}

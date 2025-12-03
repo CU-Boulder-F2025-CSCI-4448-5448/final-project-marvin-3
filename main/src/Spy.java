@@ -1,5 +1,5 @@
 public class Spy extends DecoratedMoveablePiece {
-    public Spy(boolean isRed, Character value) {super(isRed, 'S');}
+    public Spy(boolean isRed) {super(isRed, 'S');}
 
     public String strikeResult(Piece piece) {
         Character otherValue = piece.getValue();

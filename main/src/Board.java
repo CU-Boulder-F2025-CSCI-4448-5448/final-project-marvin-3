@@ -67,6 +67,10 @@ public class Board {
             return landSquare.selectSquare();
         }
     }
+
+    public void strike(int xCoordStriking, int yCoordStriking, int xCoordStruck, int yCoordStruck) {
+
+    }
 }
 
     //public void printBoardHidden() {}
