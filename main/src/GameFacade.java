@@ -3,19 +3,15 @@ import java.util.Scanner;
 
 public class GameFacade {
     Scanner scanner = new Scanner(System.in);
-    ArrayList<Piece> redPieces = new ArrayList<Piece>();
-    ArrayList<Piece> bluePieces = new ArrayList<Piece>();
     ArrayList<Piece> takenRedPieces = new ArrayList<Piece>();
     ArrayList<Piece> takenBluePieces = new ArrayList<Piece>();
     boolean winner;
 
     public GameFacade() {
-        //redPieces = PieceFactory.createRedPieces();
-        //bluePieces = PieceFactory.createBluePieces();
     }
 
     public void play() {
-        placePieces();
+        setUpBoard();
         //while loop for turns until one player wins
         boolean isRedTurn = true;
         boolean gameOver = false;
@@ -30,8 +26,54 @@ public class GameFacade {
         }
     }
 
-    public void placePieces() {
-        //place pieces
+    public void setUpBoard() {
+        ArrayList<Piece> redPieces = PieceCollectionFactory.createRedPieceCollection().getPieces();
+        ArrayList<Piece> bluePieces = PieceCollectionFactory.createBluePieceCollection().getPieces();
+        System.out.println("Red, it's your turn to set up the board!");
+        Board.getBoard().printBoard(true);
+        for (Piece piece : redPieces) {
+            placePiece(piece);
+            Board.getBoard().printBoard(true);
+        }
+        //clear terminal
+        System.out.println("Blue, it's your turn to set up the board!");
+        Board.getBoard().printBoard(true);
+        for (Piece piece : bluePieces) {
+            placePiece(piece);
+            Board.getBoard().printBoard(true);
+        }
+        //clear terminal
+    }
+
+    public void placePiece(Piece piece) {
+        boolean validCoordinates = true;
+        int x;
+        int y;
+        do {
+            System.out.println("Type coordinates for " + piece);
+            System.out.print("X coordinate: ");
+            x = scanner.nextInt();
+            System.out.print("Y coordinate: ");
+            y = scanner.nextInt();
+            //validCoordinates = validate(x, y, piece.isRed());
+            if (!validCoordinates) {
+                System.out.println("Invalid coordinates!");
+            }
+        } while (!validCoordinates);
+        Board.getBoard().addPiece(piece, x, y);
+
+    }
+
+    public boolean validate(int x, int y, boolean isRed) {
+        if (x >= 0 && x <= 9 && isRed && (y >= 0 && y <= 3)) {
+            return true;
+        }
+        else if (x >= 0 && x <= 9 && !isRed && (y >= 6 && y <= 9)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

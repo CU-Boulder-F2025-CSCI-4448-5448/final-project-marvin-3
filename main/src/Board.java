@@ -26,7 +26,7 @@ public class Board {
 
     //set up!!!!
 
-    public void addPiece(Square square, Piece piece) {
+    public void addPiece(Piece piece, int x, int y) {
         //add piece to square
     }
 
