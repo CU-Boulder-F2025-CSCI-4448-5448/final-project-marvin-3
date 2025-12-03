@@ -1,18 +1,12 @@
-public class MoveablePiece extends Piece {
-    public MoveablePiece(boolean isRed, Character value) {
-        super(isRed, value);
-    }
-
-    public boolean canMove() {
-        return true;
-    }
+public class Miner extends DecoratedMoveablePiece{
+    public Miner(boolean isRed, Character value) {super(isRed, '8');}
 
     public String strikeResult(Piece piece) {
         Character otherValue = piece.getValue();
         if (otherValue == 'F') {
             return "WINGAME";
         } else if (otherValue == 'B') {
-            return "LOSE";
+            return "WIN";
         } else {
             int thisNumeric = this.getValue() - '0';
             int otherNumeric;
@@ -23,5 +17,4 @@ public class MoveablePiece extends Piece {
             else {return "TIE";}
         }
     }
-
 }

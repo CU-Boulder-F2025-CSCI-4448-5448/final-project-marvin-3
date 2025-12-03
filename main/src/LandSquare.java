@@ -13,7 +13,7 @@ public class LandSquare extends Square {
     public boolean selectSquare() {
         if (!hasPiece()) {return false;}
         else {
-            return piece.selectPiece();
+            return piece.canMove();
         }
     }
 }

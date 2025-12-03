@@ -17,8 +17,8 @@ public abstract class Piece {
         }
     }
 
-    public boolean selectPiece() {
-        if (value == 'B' || value == 'F') {return false;}
-        else {return true;}
-    }
+    public Character getValue() {return value;}
+
+    abstract public boolean canMove();
+
 }
