@@ -21,11 +21,16 @@ public class GameFacade {
     public void turn(boolean isRedTurn) {
         //do while valid piece - put in own function?
         Board.getBoard().printBoard(isRedTurn);
-        System.out.println("Type coordinates of piece to move");
-        System.out.print("X coordinate: ");
-        int xCoord = scanner.nextInt();
-        System.out.print("Y coordinate: ");
-        int yCoord = scanner.nextInt();
+        boolean validSelect = false;
+        do {
+            System.out.println("Type coordinates of piece to move");
+            System.out.print("X coordinate: ");
+            int xCoord = scanner.nextInt();
+            System.out.print("Y coordinate: ");
+            int yCoord = scanner.nextInt();
+            validSelect = Board.getBoard().select(xCoord,yCoord);
+        }
+        while (!validSelect);
 
         //function for selecting where piece moves - do while
 

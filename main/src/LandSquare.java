@@ -9,4 +9,11 @@ public class LandSquare extends Square {
         }
         else {System.out.print(" -  ");}
     }
+
+    public boolean selectSquare() {
+        if (!hasPiece()) {return false;}
+        else {
+            return piece.selectPiece();
+        }
+    }
 }

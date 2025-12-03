@@ -15,4 +15,9 @@ public abstract class Piece {
             System.out.print(" ?  ");
         }
     }
+
+    public boolean selectPiece() {
+        if (value == 'B' || value == 'F') {return false;}
+        else {return true;}
+    }
 }
