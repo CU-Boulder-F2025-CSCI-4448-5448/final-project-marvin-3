@@ -24,10 +24,16 @@ public class Board {
         return instance;
     }
 
-    //set up!!!!
+
 
     public void addPiece(Piece piece, int x, int y) {
-        //add piece to square
+        Square square = board[x][y];
+        if (square instanceof LakeSquare) {
+            throw new RuntimeException("Cannot add piece to lake square!");
+        };
+        if (square instanceof LandSquare landSquare){
+            landSquare.addPiece(piece);
+        }
     }
 
     public void printBoard(boolean isRedPerspective) {

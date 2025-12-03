@@ -16,4 +16,9 @@ public class LandSquare extends Square {
             return piece.canMove();
         }
     }
+
+    public void addPiece(Piece piece) {
+        if (hasPiece()) {throw new RuntimeException("Square already has piece!");}
+        this.piece = piece;
+    }
 }
