@@ -3,7 +3,7 @@ public class StationaryPiece extends Piece{
         super(isRed, value);
     }
 
-    public boolean canMove() {
+    public boolean canMove(boolean isRedTurn) {
         return false;
     }
 }

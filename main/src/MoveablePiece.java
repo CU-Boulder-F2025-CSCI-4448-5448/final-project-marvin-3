@@ -3,8 +3,8 @@ public class MoveablePiece extends Piece {
         super(isRed, value);
     }
 
-    public boolean canMove() {
-        return true;
+    public boolean canMove(boolean isRedTurn) {
+        return (isRedTurn && isRed()) || (!isRedTurn && !isRed());
     }
 
     public String strikeResult(Piece piece) {

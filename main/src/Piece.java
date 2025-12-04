@@ -21,7 +21,7 @@ public abstract class Piece {
 
     public Character getValue() {return value;}
 
-    abstract public boolean canMove();
+    abstract public boolean canMove(boolean isRedTurn);
 
     public String toString() {return this.value.toString();}
 

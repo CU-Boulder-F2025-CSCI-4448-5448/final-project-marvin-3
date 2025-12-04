@@ -5,6 +5,7 @@ public class GameFacade {
     Scanner scanner = new Scanner(System.in);
     ArrayList<Piece> takenRedPieces = new ArrayList<Piece>();
     ArrayList<Piece> takenBluePieces = new ArrayList<Piece>();
+    private boolean gameOver = false;
     boolean winner;
 
     public GameFacade() {
@@ -16,9 +17,7 @@ public class GameFacade {
 
     public void play() {
         setUpBoard();
-        //while loop for turns until one player wins
         boolean isRedTurn = true;
-        boolean gameOver = false;
         while (!gameOver) {
             if (cannotMove(isRedTurn)) {
                 gameOver = true;
@@ -26,6 +25,10 @@ public class GameFacade {
                 break;
             }
             turn(isRedTurn);
+            if (Board.flagFound) {
+                gameOver = true;
+            }
+            System.out.println(Board.messageToOtherPlayer);
             isRedTurn = !isRedTurn;
         }
     }
@@ -69,19 +72,22 @@ public class GameFacade {
     }
 
     public boolean validate(int x, int y, boolean isRed) {
+        if (x > 9 || x < 0 || y > 9 || y < 0) {
+            System.out.println("Out of bounds!");
+            return false;
+        }
         if (Board.getBoard().isLakeSquare(x, y)) {
-            System.out.println("Lake!");
+            System.out.println("This is a lake square!");
             return false;
         }
         if (Board.getBoard().squareHasPiece(x, y)) {
-            System.out.println("Occupied!");
+            System.out.println("This square is occupied!");
             return false;
         }
-        else if (x >= 0 && x <= 9 && isRed && (y >= 0 && y <= 3)) {
-            System.out.println("Red wrong!");
+        else if (isRed && y <= 3) {
             return true;
         }
-        else if (x >= 0 && x <= 9 && !isRed && (y >= 6 && y <= 9)) {
+        else if (!isRed && y >= 6) {
             return true;
         }
         else {
@@ -92,25 +98,31 @@ public class GameFacade {
 
 
     public void turn(boolean isRedTurn) {
-        //do while valid piece - put in own function?
+        if (isRedTurn) {System.out.println("Red's turn!");}
+        else{System.out.println("Blue's turn!");}
         Board.getBoard().printBoard(isRedTurn);
-        boolean validSelect = false;
+        int xCoordStarting;
+        int yCoordStarting;
+        boolean validSelect;
         do {
             System.out.println("Type coordinates of piece to move");
             System.out.print("X coordinate: ");
-            int xCoord = scanner.nextInt();
+            xCoordStarting = scanner.nextInt();
             System.out.print("Y coordinate: ");
-            int yCoord = scanner.nextInt();
-            validSelect = Board.getBoard().select(xCoord,yCoord);
+            yCoordStarting = scanner.nextInt();
+            validSelect = Board.getBoard().select(xCoordStarting,yCoordStarting,isRedTurn);
         }
         while (!validSelect);
-
-        //function for selecting where piece moves - do while
-
-        //if action is strike, compare values and decide winner and move accordingly
-        //if move, move
-        //print hidden board showing moved
-
+        boolean validMove;
+        do {
+            System.out.println("Type coordinates of destination square");
+            System.out.print("X coordinate: ");
+            int xCoordEnding = scanner.nextInt();
+            System.out.print("Y coordinate: ");
+            int yCoordEnding = scanner.nextInt();
+            validMove = Board.getBoard().move(xCoordStarting,yCoordStarting,xCoordEnding,yCoordEnding,isRedTurn);
+        }
+        while (!validMove);
 
         System.out.println("Give computer to other player and enter any key");
         scanner.nextLine();
