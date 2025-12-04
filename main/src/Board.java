@@ -69,7 +69,10 @@ public class Board {
 
     public boolean select(int xCoord, int yCoord, boolean isRedTurn) {
         Square currentSquare = board[yCoord][xCoord];
-        if (currentSquare instanceof LakeSquare) {return false;}
+        if (currentSquare instanceof LakeSquare) {
+            System.out.println("Invalid! You selected a lake square!");
+            return false;
+        }
         else {
             LandSquare landSquare = (LandSquare) currentSquare;
             return landSquare.selectSquare(isRedTurn);

@@ -28,7 +28,7 @@ public class GameFacade {
             if (Board.flagFound) {
                 gameOver = true;
             }
-            System.out.println(Board.messageToOtherPlayer);
+            clearScreen();
             isRedTurn = !isRedTurn;
         }
     }
@@ -100,6 +100,7 @@ public class GameFacade {
     public void turn(boolean isRedTurn) {
         if (isRedTurn) {System.out.println("Red's turn!");}
         else{System.out.println("Blue's turn!");}
+        System.out.println(Board.messageToOtherPlayer);
         Board.getBoard().printBoard(isRedTurn);
         int xCoordStarting;
         int yCoordStarting;
@@ -123,9 +124,9 @@ public class GameFacade {
             validMove = Board.getBoard().move(xCoordStarting,yCoordStarting,xCoordEnding,yCoordEnding,isRedTurn);
         }
         while (!validMove);
-
+        clearScreen();
         System.out.println("Give computer to other player and enter any key");
-        scanner.nextLine();
+        String confirmationKey = scanner.nextLine();
     }
 
     boolean cannotMove(boolean isRedTurn) {

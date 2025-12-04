@@ -11,7 +11,10 @@ public class LandSquare extends Square {
     }
 
     public boolean selectSquare(boolean isRedTurn) {
-        if (!hasPiece()) {return false;}
+        if (!hasPiece()) {
+            System.out.print("Invalid! Square is empty!");
+            return false;
+        }
         else {
             return piece.canMove(isRedTurn);
         }
