@@ -16,6 +16,9 @@ public class GameFacade {
 
     public boolean play() {
         setUpBoard();
+        clearScreen();
+        System.out.println("Pass the computer to the red player and then press enter to continue");
+        confirmationKey = scanner.nextLine();
         boolean isRedTurn = true;
         while (!gameOver) {
             if (cannotMove(isRedTurn)) {
