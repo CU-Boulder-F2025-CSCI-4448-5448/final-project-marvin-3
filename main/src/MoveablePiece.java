@@ -4,8 +4,13 @@ public class MoveablePiece extends Piece {
     }
 
     public boolean canMove(boolean isRedTurn) {
-        System.out.println("Invalid selection!");
-        return (isRedTurn && isRed()) || (!isRedTurn && !isRed());
+        if ((isRedTurn && isRed()) || (!isRedTurn && !isRed())) {
+            return true;
+        }
+        else {
+            System.out.println("Invalid selection!");
+            return false;
+        }
     }
 
     public String strikeResult(Piece piece) {
