@@ -7,6 +7,7 @@ public class GameFacade {
     ArrayList<Piece> takenBluePieces = new ArrayList<Piece>();
     private boolean gameOver = false;
     boolean winner;
+    String confirmationKey;
 
     public GameFacade() {
     }
@@ -15,7 +16,7 @@ public class GameFacade {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
-    public void play() {
+    public boolean play() {
         setUpBoard();
         boolean isRedTurn = true;
         while (!gameOver) {
@@ -28,13 +29,20 @@ public class GameFacade {
             if (Board.flagFound) {
                 gameOver = true;
                 this.winner = isRedTurn;
+                break;
             }
+            Board.getBoard().printBoard(isRedTurn);
+            System.out.println("Press enter to clear screen");
+            scanner.nextLine();
+            confirmationKey = scanner.nextLine();
+            clearScreen();
+            System.out.println("Give computer to other player and then press enter to continue");
+            scanner.nextLine();
+            confirmationKey = scanner.nextLine();
             clearScreen();
             isRedTurn = !isRedTurn;
         }
-        if (winner) {String winner = "Red";}
-        else {String winner = "Blue";}
-        System.out.println("Game over! " + winner + " won!");
+        return winner;
     }
 
     public void setUpBoard() {
@@ -57,7 +65,7 @@ public class GameFacade {
     }
 
     public void placePiece(Piece piece) {
-        boolean validCoordinates = true;
+        boolean validCoordinates;
         int x;
         int y;
         do {
@@ -128,20 +136,17 @@ public class GameFacade {
             validMove = Board.getBoard().move(xCoordStarting,yCoordStarting,xCoordEnding,yCoordEnding,isRedTurn);
         }
         while (!validMove);
-        clearScreen();
-        System.out.println("Give computer to other player and enter any key");
-        String confirmationKey = scanner.nextLine();
     }
 
     boolean cannotMove(boolean isRedTurn) {
         for (int i=0; i<10; i++) {
             for (int j=0; j<10; j++) {
                 if (!Board.getBoard().surrounded(j, i, isRedTurn)) {
-                    return true;
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
 

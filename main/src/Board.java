@@ -84,51 +84,33 @@ public class Board {
     }
 
     public boolean surrounded(int xCoord, int yCoord, boolean isRedTurn) {
-        if(board[yCoord][xCoord] instanceof LandSquare) {
-            LandSquare landSquare = (LandSquare) board[yCoord][xCoord];
-            if (landSquare.getPieceColor() != isRedTurn) {
-                return true;
-            }
+        if (!(board[yCoord][xCoord] instanceof LandSquare land)) {
+            return false;
         }
-        else if (board[yCoord][xCoord] instanceof LakeSquare) {
-            return true;
+
+        if (!land.hasPiece()) {
+            return false;
         }
-        Square aboveSquare;
-        Square belowSquare;
-        Square rightSquare;
-        Square leftSquare;
-        if (xCoord<9) {
-            aboveSquare = board[yCoord][xCoord+1];
-            if (aboveSquare instanceof LandSquare landSquare) {
-                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
+
+        if (land.getPieceColor() != isRedTurn) {
+            return false;
+        }
+        int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+
+        for (int[] d : directions) {
+            int nx = xCoord + d[0];
+            int ny = yCoord + d[1];
+
+            if (nx < 0 || nx > 9 || ny < 0 || ny > 9) {continue;}
+
+            Square square = board[ny][nx];
+            if (square instanceof LandSquare adjacentSquare) {
+                if (!adjacentSquare.hasPiece() || adjacentSquare.getPieceColor() != isRedTurn) {
                     return false;
                 }
             }
         }
-        if (xCoord>0) {
-            belowSquare = board[yCoord][xCoord-1];
-            if (belowSquare instanceof LandSquare landSquare) {
-                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
-                    return false;
-                }
-            }
-        }
-        if (yCoord<9) {
-            rightSquare = board[yCoord+1][xCoord];
-            if (rightSquare instanceof LandSquare landSquare) {
-                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
-                    return false;
-                }
-            }
-        }
-        if (yCoord>0) {
-            leftSquare = board[yCoord-1][xCoord];
-            if (leftSquare instanceof LandSquare landSquare) {
-                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
-                    return false;
-                }
-            }
-        }
+
         return true;
     }
 
@@ -195,6 +177,7 @@ public class Board {
             System.out.println("Moving " + pieceToMove + " to " + xCoordEnding + "," + yCoordEnding);
             squareStarting.removePiece();
             squareEnding.addPiece(pieceToMove);
+            messageToOtherPlayer = "";
             return true;
         }
         else if (pieceToTake.isRed() && isRedTurn || !pieceToTake.isRed() && !isRedTurn) {

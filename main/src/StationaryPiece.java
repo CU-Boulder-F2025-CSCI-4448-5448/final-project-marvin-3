@@ -4,6 +4,7 @@ public class StationaryPiece extends Piece{
     }
 
     public boolean canMove(boolean isRedTurn) {
+        System.out.println("Invalid selection!");
         return false;
     }
 }
