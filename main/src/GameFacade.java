@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class GameFacade {
     Scanner scanner = new Scanner(System.in);
-    ArrayList<Piece> takenRedPieces = new ArrayList<Piece>();
-    ArrayList<Piece> takenBluePieces = new ArrayList<Piece>();
     private boolean gameOver = false;
     boolean winner;
     String confirmationKey;
