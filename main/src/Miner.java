@@ -1,5 +1,5 @@
 public class Miner extends DecoratedMoveablePiece{
-    public Miner(boolean isRed, Character value) {super(isRed, '8');}
+    public Miner(boolean isRed) {super(isRed, '8');}
 
     public String strikeResult(Piece piece) {
         Character otherValue = piece.getValue();

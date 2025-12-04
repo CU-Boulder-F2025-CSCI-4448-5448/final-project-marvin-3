@@ -33,7 +33,7 @@ public class PieceFactory {
     }
 
     public static Piece createEight(boolean isRed) {
-        return new MoveablePiece(isRed, '8');
+        return new Miner(isRed);
     }
 
     public static Piece createNine(boolean isRed) {
