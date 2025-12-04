@@ -32,4 +32,9 @@ public class LandSquare extends Square {
     public void removePiece() {
         piece = null;
     }
+
+    public boolean getPieceColor() {
+        if (piece == null) {throw new RuntimeException("Square does not have piece!");}
+        else {return piece.isRed();}
+    }
 }

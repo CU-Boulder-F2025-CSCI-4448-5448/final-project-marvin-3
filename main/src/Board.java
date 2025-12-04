@@ -73,10 +73,63 @@ public class Board {
             System.out.println("Invalid! You selected a lake square!");
             return false;
         }
+        else if (surrounded(xCoord, yCoord, isRedTurn)) {
+            System.out.println("Piece is not moveable!");
+            return false;
+        }
         else {
             LandSquare landSquare = (LandSquare) currentSquare;
             return landSquare.selectSquare(isRedTurn);
         }
+    }
+
+    public boolean surrounded(int xCoord, int yCoord, boolean isRedTurn) {
+        if(board[yCoord][xCoord] instanceof LandSquare) {
+            LandSquare landSquare = (LandSquare) board[yCoord][xCoord];
+            if (landSquare.getPieceColor() != isRedTurn) {
+                return true;
+            }
+        }
+        else if (board[yCoord][xCoord] instanceof LakeSquare) {
+            return true;
+        }
+        Square aboveSquare;
+        Square belowSquare;
+        Square rightSquare;
+        Square leftSquare;
+        if (xCoord<9) {
+            aboveSquare = board[yCoord][xCoord+1];
+            if (aboveSquare instanceof LandSquare landSquare) {
+                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
+                    return false;
+                }
+            }
+        }
+        if (xCoord>0) {
+            belowSquare = board[yCoord][xCoord-1];
+            if (belowSquare instanceof LandSquare landSquare) {
+                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
+                    return false;
+                }
+            }
+        }
+        if (yCoord<9) {
+            rightSquare = board[yCoord+1][xCoord];
+            if (rightSquare instanceof LandSquare landSquare) {
+                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
+                    return false;
+                }
+            }
+        }
+        if (yCoord>0) {
+            leftSquare = board[yCoord-1][xCoord];
+            if (leftSquare instanceof LandSquare landSquare) {
+                if (!landSquare.hasPiece() || landSquare.getPieceColor() != isRedTurn) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public boolean squareHasPiece(int x, int y) {
