@@ -27,10 +27,14 @@ public class GameFacade {
             turn(isRedTurn);
             if (Board.flagFound) {
                 gameOver = true;
+                this.winner = isRedTurn;
             }
             clearScreen();
             isRedTurn = !isRedTurn;
         }
+        if (winner) {String winner = "Red";}
+        else {String winner = "Blue";}
+        System.out.println("Game over! " + winner + " won!");
     }
 
     public void setUpBoard() {
