@@ -5,7 +5,7 @@ public class GameFacade {
     Scanner scanner = new Scanner(System.in);
     private boolean gameOver = false;
     boolean winner;
-    String confirmationKey;
+    Character confirmationKey;
 
     public GameFacade() {
     }
@@ -17,8 +17,8 @@ public class GameFacade {
     public boolean play() {
         setUpBoard();
         clearScreen();
-        System.out.println("Pass the computer to the red player and then press enter to continue");
-        confirmationKey = scanner.nextLine();
+        System.out.println("Pass the computer to the red player and then enter any key to continue");
+        confirmationKey = scanner.next().charAt(0);
         boolean isRedTurn = true;
         while (!gameOver) {
             if (cannotMove(isRedTurn)) {
@@ -33,13 +33,11 @@ public class GameFacade {
                 break;
             }
             Board.getBoard().printBoard(isRedTurn);
-            System.out.println("Press enter to clear screen");
-            scanner.nextLine();
-            confirmationKey = scanner.nextLine();
+            System.out.println("Enter any key to clear screen");
+            confirmationKey = scanner.next().charAt(0);
             clearScreen();
-            System.out.println("Give computer to other player and then press enter to continue");
-            scanner.nextLine();
-            confirmationKey = scanner.nextLine();
+            System.out.println("Give computer to other player and then enter any key to continue");
+            confirmationKey = scanner.next().charAt(0);
             clearScreen();
             isRedTurn = !isRedTurn;
         }
@@ -107,8 +105,6 @@ public class GameFacade {
             return false;
         }
     }
-
-
 
     public void turn(boolean isRedTurn) {
         if (isRedTurn) {System.out.println("Red's turn!");}
