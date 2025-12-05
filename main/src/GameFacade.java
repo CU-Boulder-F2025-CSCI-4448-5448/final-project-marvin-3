@@ -129,7 +129,6 @@ public class GameFacade {
         boolean validMove;
         do {
             System.out.println("Type coordinates of destination square");
-            System.out.print("X coordinate: ");
             int xCoordEnding = getIntSafely("X coordinate: ");
             int yCoordEnding = getIntSafely("Y coordinate: ");
             validMove = Board.getBoard().move(xCoordStarting,yCoordStarting,xCoordEnding,yCoordEnding,isRedTurn);
