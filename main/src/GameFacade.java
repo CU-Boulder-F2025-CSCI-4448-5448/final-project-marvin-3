@@ -18,13 +18,19 @@ public class GameFacade {
     public boolean play() {
         setUpBoard();
         clearScreen();
-        System.out.println("Pass the computer to the red player and then enter any key to continue");
+        System.out.println("Pass the computer to the red player and then enter any letter+enter to continue");
         confirmationKey = scanner.next().charAt(0);
         boolean isRedTurn = true;
         while (!gameOver) {
             if (cannotMove(isRedTurn)) {
                 gameOver = true;
                 this.winner = !isRedTurn;
+                if (winner) {
+                    System.out.println("Blue cannot move and red wins!");
+                }
+                else {
+                    System.out.println("Red cannot move and blue wins!");
+                }
                 break;
             }
             turn(isRedTurn);
@@ -34,10 +40,10 @@ public class GameFacade {
                 break;
             }
             Board.getBoard().printBoard(isRedTurn);
-            System.out.println("Enter any key to clear screen");
+            System.out.println("Enter any letter+enter to clear screen");
             confirmationKey = scanner.next().charAt(0);
             clearScreen();
-            System.out.println("Give computer to other player and then enter any key to continue");
+            System.out.println("Give computer to other player and then enter any letter+enter to continue");
             confirmationKey = scanner.next().charAt(0);
             clearScreen();
             isRedTurn = !isRedTurn;

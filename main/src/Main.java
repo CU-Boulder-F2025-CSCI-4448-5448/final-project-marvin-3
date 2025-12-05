@@ -22,8 +22,6 @@ public class Main {
                 } else {
                     StatsManager.recordWin(blueInitials);
                 }
-
-
                 break;
             case "No":
                 System.out.println("Goodbye!");
