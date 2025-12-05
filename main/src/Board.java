@@ -84,17 +84,6 @@ public class Board {
     }
 
     public boolean surrounded(int xCoord, int yCoord, boolean isRedTurn) {
-        if (!(board[yCoord][xCoord] instanceof LandSquare land)) {
-            return false;
-        }
-
-        if (!land.hasPiece()) {
-            return false;
-        }
-
-        if (land.getPieceColor() != isRedTurn) {
-            return false;
-        }
         int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
 
         for (int[] d : directions) {

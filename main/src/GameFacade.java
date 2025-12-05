@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameFacade {
@@ -69,10 +70,8 @@ public class GameFacade {
         int y;
         do {
             System.out.println("Type coordinates for " + piece);
-            System.out.print("X coordinate: ");
-            x = scanner.nextInt();
-            System.out.print("Y coordinate: ");
-            y = scanner.nextInt();
+            x = getIntSafely("X coordinate: ");
+            y = getIntSafely("Y coordinate: ");
             validCoordinates = validate(x, y, piece.isRed());
             if (!validCoordinates) {
                 System.out.println("Invalid coordinates!");
@@ -116,10 +115,8 @@ public class GameFacade {
         boolean validSelect;
         do {
             System.out.println("Type coordinates of piece to move");
-            System.out.print("X coordinate: ");
-            xCoordStarting = scanner.nextInt();
-            System.out.print("Y coordinate: ");
-            yCoordStarting = scanner.nextInt();
+            xCoordStarting = getIntSafely("X coordinate: ");
+            yCoordStarting = getIntSafely("Y coordinate: ");
             validSelect = Board.getBoard().select(xCoordStarting,yCoordStarting,isRedTurn);
         }
         while (!validSelect);
@@ -127,9 +124,8 @@ public class GameFacade {
         do {
             System.out.println("Type coordinates of destination square");
             System.out.print("X coordinate: ");
-            int xCoordEnding = scanner.nextInt();
-            System.out.print("Y coordinate: ");
-            int yCoordEnding = scanner.nextInt();
+            int xCoordEnding = getIntSafely("X coordinate: ");
+            int yCoordEnding = getIntSafely("Y coordinate: ");
             validMove = Board.getBoard().move(xCoordStarting,yCoordStarting,xCoordEnding,yCoordEnding,isRedTurn);
         }
         while (!validMove);
@@ -153,6 +149,20 @@ public class GameFacade {
             }
         }
         return true;
+    }
+
+    private int getIntSafely(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            try {
+                int value = scanner.nextInt();
+                scanner.nextLine();
+                return value;
+            } catch (InputMismatchException exception) {
+                System.out.println("Please enter an integer!");
+                scanner.nextLine();
+            }
+        }
     }
 
 
