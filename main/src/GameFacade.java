@@ -142,7 +142,16 @@ public class GameFacade {
     boolean cannotMove(boolean isRedTurn) {
         for (int i=0; i<10; i++) {
             for (int j=0; j<10; j++) {
-                if (!Board.getBoard().surrounded(j, i, isRedTurn)) {
+                Square square = Board.getBoard().getSquare(i,j);
+                if (!(square instanceof LandSquare land)) continue;
+
+                if (!land.hasPiece()) continue;
+
+                if (land.getPieceColor() != isRedTurn) continue;
+
+                if (!(land.getPiece() instanceof MoveablePiece)) continue;
+
+                if (!Board.getBoard().surrounded(i, j, isRedTurn)) {
                     return false;
                 }
             }

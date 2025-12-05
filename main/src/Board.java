@@ -101,11 +101,23 @@ public class Board {
             int nx = xCoord + d[0];
             int ny = yCoord + d[1];
 
-            if (nx < 0 || nx > 9 || ny < 0 || ny > 9) {continue;}
+            if (nx < 0 || nx > 9 || ny < 0 || ny > 9) {
+                continue;
+            }
 
             Square square = board[ny][nx];
-            if (square instanceof LandSquare adjacentSquare) {
-                if (!adjacentSquare.hasPiece() || adjacentSquare.getPieceColor() != isRedTurn) {
+
+            if (square instanceof LakeSquare) {
+                continue;
+            }
+
+            if (square instanceof LandSquare landSquare) {
+
+                if (!landSquare.hasPiece()) {
+                    return false;
+                }
+
+                if (landSquare.getPieceColor() != isRedTurn) {
                     return false;
                 }
             }
@@ -192,6 +204,10 @@ public class Board {
 
     private Piece getPiece(LandSquare square) {
         return square.getPiece();
+    }
+
+    public Square getSquare(int x, int y) {
+        return this.board[y][x];
     }
 }
 
