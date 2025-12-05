@@ -1,10 +1,10 @@
 # Stratego in your terminal!
-We have coded a basic version of the classic two-player game stratego! Both players play on the same computer, simply passing the computer back and forth at the prompt. Your computer will also keep track of total wins from game to game for long-lasting battles!
-Red and blue will be first prompted to enter initials. Then each player, beginning with red, will set up his or her board one at a time, in order of pieces 1 to flag. Once both players have completed set-up, game play will pass between players, beginning with red, until one player wins.
+Overview: We have coded a basic version of the classic two-player game stratego! Both players play on the same computer, simply passing the computer back and forth at the prompt. Your computer will also keep track of total wins from game to game for long-lasting battles!<br>
+Functionality: Red and blue will be first prompted to enter initials. Then each player, beginning with red, will set up his or her board one at a time, in order of pieces 1 to flag. Once both players have completed set-up, game play will pass between players, beginning with red, until one player wins.
 
 # Rules of the game
 
-Objective
+Objective<br>
 Capture the opponent’s Flag or eliminate all of their movable pieces.
 
 Board & Setup
@@ -14,21 +14,21 @@ Board & Setup
 - Players secretly place their pieces on their first four rows.
 - After setup, pieces cannot be moved until the game begins.
 
-Piece Types and Ranks
-1	Marshal =	Highest rank
-2	General
-3	Colonel	
-4	Major	
-5	Captain	
-6	Lieutenant	
-7	Sergeant	
-8	Miner = Can defuse bombs
-9	Scout	
-S	Spy =	Can defeat the marshal if it attacks first
-B	Bomb = Immovable; kills attackers except miners
-F	Flag = Immovable; capturing it wins the game
+Piece Types and Ranks<br>
+1	Marshal =	Highest rank<br>
+2	General<br>
+3	Colonel	<br>
+4	Major	<br>
+5	Captain	<br>
+6	Lieutenant	<br>
+7	Sergeant	<br>
+8	Miner = Can defuse bombs<br>
+9	Scout	<br>
+S	Spy =	Can defeat the marshal if it attacks first<br>
+B	Bomb = Immovable; kills attackers except miners<br>
+F	Flag = Immovable; capturing it wins the game<br>
 
-Movement Rules
+Movement Rules<br>
 - Most pieces move one square orthogonally (up, down, left, right).
 - No diagonal movement.
 - Bombs and the flag cannot move.
